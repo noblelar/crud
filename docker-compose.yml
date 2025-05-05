@@ -1,0 +1,22 @@
+services:
+  db:
+    container_name: crud_db
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: crud_db
+      POSTGRES_USER: postgresbb
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5405:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - fanalapi_fanal_network  # join the same network as fanal project
+
+volumes:
+  db_data:
+
+networks:
+  fanalapi_fanal_network:
+    external: true  # mark this as an external network
+
